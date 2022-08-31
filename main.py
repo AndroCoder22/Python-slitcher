@@ -44,8 +44,7 @@ while 1:
     clock.tick(60)
     sc.fill((20, 20, 20))
     pg.display.set_caption(str(int(clock.get_fps())))
-    mouse = pg.mouse.get_pos()
-
+    
     if not generate:
         for i in range(eat_p):
             eat.append([rr(0, WIDTH * world_size), rr(0, HEIGHT * world_size)])
@@ -53,9 +52,7 @@ while 1:
         for l in range(len(current_skin['colors'])):
             for t in range(int(current_skin['lenght']/len(current_skin['colors']))):
                 skin.append(current_skin['colors'][l])
-
         generate = True
-
 
     if generate:
         player_rect = pg.Rect((head[0]-snake_height-scroll_x, head[1]-snake_height-scroll_y), (snake_height*2, snake_height*2))
@@ -65,7 +62,8 @@ while 1:
                 snake_lenght += 1
                 snake_height += 0.1
                 eat[i] = [rr(0, WIDTH*4), rr(0, HEIGHT*4)]
-
+                
+        mouse = pg.mouse.get_pos()
         for ev in pg.event.get():
             if ev.type == pg.QUIT:
                 exit()
@@ -78,7 +76,6 @@ while 1:
                 istouch = False	
 
         if istouch:
-
             pg.draw.circle(sc, (100,100,100), mouse2, 100)
             cur_mouse = mouse[0] - mouse2[0], mouse[1] - mouse2[1]
             angler = math.atan2(cur_mouse[0], cur_mouse[1])
